@@ -9,7 +9,7 @@
   <link href="https://www.jqueryscript.net/css/jquerysctipttop.css" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/4.1.3/darkly/bootstrap.min.css">
   <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha384-nvAa0+6Qg9clwYCGGPpDQLVpLNn0fRaROjHqs13t4Ggj3Ez50XnGQqc/r8MhnRDZ" crossorigin="anonymous"></script>
-  <script type="text/javascript" src="js/dynamic-form.js"></script>
+  <script type="text/javascript" src="static/dynamic-form.js"></script>
   <style>
     .container {
       margin: 150px auto;
@@ -75,47 +75,12 @@
   </div>
   <script>
     $(document).ready(function() {
-      var dynamic_form = $("#dynamic_form").dynamicForm("#dynamic_form", "#plus5", "#minus5", {
-        limit: 10,
-        formPrefix: "dynamic_form",
-        normalizeFullForm: false,
-        isSubDynamicForm: false,
-        subDynamicForm: ["#subdynamic_form"]
+      $("#dynamic_form").dynamicForm("#dynamic_form", "#plus5", "#minus5", {
+        limit: 10
       });
-
-      var subdynamic_form = $("#subdynamic_form").dynamicForm("#subdynamic_form", "#plus6", "#minus6", {
-        limit: 10,
-        formPrefix: "subdynamic_form",
-        normalizeFullForm: false,
-        isSubDynamicForm: true
+      $("#subdynamic_form").dynamicForm("#subdynamic_form", "#plus6", "#minus6", {
+        limit: 10
       });
-
-      dynamic_form.inject([{
-        p_name: 'Hemant',
-        quantity: '123',
-        remarks: 'testing remark'
-      }, {
-        p_name: 'Harshal',
-        quantity: '123',
-        remarks: 'testing remark'
-      }]);
-
-      $("#dynamic_form #minus5").on('click', function() {
-        var initDynamicId = $(this).closest('#dynamic_form').parent().find("[id^='dynamic_form']").length;
-        if (initDynamicId === 2) {
-          $(this).closest('#dynamic_form').next().find('#minus5').hide();
-        }
-        $(this).closest('#dynamic_form').remove();
-      });
-
-      $("#subdynamic_form #minus6").on('click', function() {
-        var initDynamicId = $(this).closest('#subdynamic_form').parent().find("[id^='subdynamic_form']").length;
-        if (initDynamicId === 2) {
-          $(this).closest('#subdynamic_form').next().find('#minus6').hide();
-        }
-        $(this).closest('#subdynamic_form').remove();
-      });
-
 
 
       $('form').on('submit', function(event) {
